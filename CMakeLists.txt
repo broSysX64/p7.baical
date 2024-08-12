@@ -51,7 +51,7 @@ set(SOURCES_TEST_TRACE "Tests/Trace/Main.cpp")
 if(WIN32)
   set(PLATFORM_DIR "Shared/Platforms/Windows_x86/")
   set(PLATFORM_LIBS "ws2_32")
-  set(RESOURCES "Sources/P7Client.rc")
+  #set(RESOURCES "Sources/P7Client.rc")
 else()
   set(PLATFORM_DIR "Shared/Platforms/Linux_x86/")
   set(PLATFORM_LIBS pthread rt)
@@ -99,7 +99,7 @@ set(PLATFORM_HEADERS
 )
 
 if(NOT WIN32)
-  list(APPEND PLATFORM_HEADERS 
+  list(APPEND PLATFORM_HEADERS
     ${PLATFORM_DIR}/PCrashDump.h
     ${PLATFORM_DIR}/PProfiler.h
   )
@@ -137,7 +137,7 @@ endif()
 
 if(WIN32)
   set_target_properties(P7 PROPERTIES PREFIX "")
-  if(CMAKE_SIZEOF_VOID_P EQUAL 8)   
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_target_properties(P7 PROPERTIES DEBUG_POSTFIX "x64d")
     set_target_properties(P7 PROPERTIES RELEASE_POSTFIX "x64")
     set_target_properties(P7 PROPERTIES RELWITHDEBINFO_POSTFIX "x64")
@@ -171,7 +171,7 @@ write_basic_package_version_file(
 
 install(
   FILES "${CMAKE_CURRENT_BINARY_DIR}/libp7-baical-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/libp7-baical-config-version.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/libp7-baical-config-version.cmake"
   DESTINATION "lib/libp7-baical"
 )
 
@@ -211,7 +211,7 @@ if(BUILD_TESTS)
 endif()
 
 if(BUILD_EXAMPLES)
-   add_subdirectory(Examples)
+  add_subdirectory(Examples)
 endif(BUILD_EXAMPLES)
 
 ##########################
@@ -227,7 +227,7 @@ install(
 )
 
 install(
-  EXPORT libp7-baical-targets 
+  EXPORT libp7-baical-targets
   NAMESPACE libp7-baical::
   DESTINATION "lib/libp7-baical"
 )
@@ -239,10 +239,10 @@ install(
 
 if(BUILD_TESTS)
   install(
-    TARGETS 
-      P7-Test-Speed
-     #P7-Test-SpeedParallel
-      P7-Test-Trace
+    TARGETS
+    P7-Test-Speed
+    #P7-Test-SpeedParallel
+    P7-Test-Trace
     RUNTIME DESTINATION "bin"
   )
 endif()
